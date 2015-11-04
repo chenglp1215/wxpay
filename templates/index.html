@@ -1,0 +1,69 @@
+
+<!doctype html>
+<html>
+   <head>
+      <meta charset='UTF-8'>
+      <title>排行榜</title>
+      <link rel='stylesheet' href='/css/tongyou.css'>
+      <meta id='viewport' content='width=device-width, user-scalable=no, initial-scale=0.5' name='viewport' />
+      <meta name='apple-mobile-web-app-capable' content='yes'>
+      <meta content='black' name='apple-mobile-web-app-status-bar-style' />
+      <script src='/js/zepto.min.js'></script>
+      <script src='/js/util.js'></script>
+      <script>
+		 Zepto(function($){
+      $('.content').css('min-height',$(window).height())
+
+		})
+      </script>
+      <style>
+        .rank{
+
+         float:right;
+
+         width:60px;
+         height:80px;
+         border-radius: 40px 0 0 40px;
+         background:#E52424;
+         margin-top: 10px;
+         font-size:40px;
+         line-height:80px;
+         color:#fff;
+
+         padding-left:30px;
+
+        }
+      </style>
+   </head>
+   <body>
+      <div class='content'>
+
+         <div class='productpic'>
+            <img src='/{{ product.pic }}' style='height:100%;width:100%'>
+            <div class='productpicbottombar'>
+               <span style='float:left;color:#f67e06;padding-left:100px;' onclick="location.href='/'">排行</span>
+               <span style='float:right;padding-right:100px;' onclick="location.href='/detail/'"> 玩法介绍 </span>
+            </div>
+         </div>
+          {% for ps in ps_list %}
+          <a class='detail_container' onclick="location.href='/seller/{{ ps.seller.open_id }}/'">
+            <img src='{{ ps.seller.avatar }}' >
+            <div style='width:360px;height:100px;float:left'>
+               <div class='detail_title'>{{ ps.seller.get_nickname|safe }}</div>
+               <div class='detail_price'>累计销售：<span style='color:#FE8A1D;'>{{ ps.saleroom }}</span>元 </div>
+            </div>
+               <div class='rank'>{{ forloop.counter }}</div>
+            </a>
+          {% endfor %}
+        {% if self %}
+        <div class='footer' onclick="location.href='/share/{{ self.id }}/0/'">
+            我的分享
+         </div>
+        {% else %}
+         <div class='footer' onclick="location.href='/join/{{ product.id }}/'">
+            我要参加
+         </div>
+        {% endif %}
+      </div>
+   </body>
+</html>

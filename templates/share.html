@@ -1,0 +1,134 @@
+
+<!doctype html>
+<html>
+   <head>
+      <meta charset='UTF-8'>
+      <title>分享页</title>
+      <link rel='stylesheet' href='/css/tongyou.css'>
+      <meta id='viewport' content='width=device-width, user-scalable=no, initial-scale=0.5' name='viewport' />
+      <meta name='apple-mobile-web-app-capable' content='yes'>
+      <meta content='black' name='apple-mobile-web-app-status-bar-style' />
+      <script src='/js/zepto.min.js'></script>
+      <script src='/js/util.js'></script>
+      <script>
+
+
+
+		 Zepto(function($){
+      $('.content').css('min-height',$(window).height())
+
+		})
+
+
+
+      </script>
+      <style>
+
+
+
+
+      .playwayinfo{
+         width: 600px;
+         height:400px;
+         margin:0 auto;
+         padding-top:20px;
+         margin-bottom:200px;
+
+         font-size:28px;
+         color:#777;
+         }
+
+         .playwayinfo img{
+            width:100%;
+            height:auto;
+         }
+
+
+            .order_confirm{
+         width: 600px;
+         margin:0 auto;
+         margin-top:300px;
+
+         border-radius:10px 10px 10px 10px;
+         background:#06BF03;
+         color:#fff;
+         text-align:center;
+         line-height:80px;
+         font-size:40px;
+         height:80px;
+     text-decoration:none;
+     display:block;
+     padding-top:0px;
+
+         }
+
+          .payway {
+				background: #fff;
+				border-bottom: 1px solid #cdcdcd;
+				color: #444;
+				font-size: 30px;
+				line-height: 80px;
+				margin-bottom: 10px;
+				padding-left: 15px;
+				margin-top: 20px;
+                text-align: center;
+			}
+			.payway input {
+				height: 50px;
+				width: 100px;
+				border: 0px solid #fff;
+				margin-top: 0px;
+				padding-top: 0px;
+                font-size: 30px;;
+			}
+
+      </style>
+   </head>
+   <body>
+      <div class='content'>
+
+
+
+
+          <a class='detail_container' style='border:0px solid #fff' >
+
+               <img src='{{ ps.seller.avatar }}' >
+
+            <div style='width:360px;height:100px;float:left;'>
+               <div class='detail_title'>{{ ps.seller.get_nickname|safe }}为您推荐了</div>
+               <div class='detail_price' style='width:400px;color:#444'>{{ ps.product.name|safe }}</div>
+            </div>
+            </a>
+            <div class='playwayinfo' >
+               <img src='/{{ ps.product.pic }}' >
+               <span>{{ ps.product.desc|safe }}</span>
+               <form id="countForm" action="/share/{{ ps.id }}/{{ pl_id }}/" method="post">
+                    <div class="payway">
+                        购买数量：
+                        <input type="text" name="count" value="{{ count }}" id="num">件
+                    </div>
+               </form>
+            </div>
+{#        <a class='order_confirm' href="javascript:void(0);" {% if ps.product.is_alive %}onclick="document.getElementById('countForm').submit();"{% endif %}{% if not ps.product.is_alive %}style="background:#bababa" {% endif %}>{% if ps.product.is_alive %}购买{% else %}已售罄{% endif %}</a>#}
+            {% if ps.product.is_alive %}
+            <div class='footer' onclick="form_submit();">
+                购买
+            </div>
+            {% else %}
+            <div class='footer' style="background-color: #bababa;color: #444444">
+                已下架
+            </div>
+            {% endif %}
+      </div>
+   <script language="JavaScript">
+       function form_submit(){
+           var isNum= /^([0-9]+)$/;
+           if(!isNum.test(document.getElementById("num").value)){
+                alert("请输入一个数字");
+                return false;
+            }
+           document.getElementById('countForm').submit();
+       }
+   </script>
+   </body>
+</html>

@@ -1,0 +1,268 @@
+
+<!doctype html>
+<html>
+   <head>
+      <meta charset='UTF-8'>
+      <title>收货人信息</title>
+      <link rel='stylesheet' href='/css/tongyou.css'>
+      <link rel='stylesheet' href='/css/component.css'>
+      <meta id='viewport' content='width=device-width, user-scalable=no, initial-scale=0.5' name='viewport' />
+      <script src='/js/zepto.min.js'></script>
+      <script src='/js/util.js'></script>
+      <script>
+
+
+
+		 Zepto(function($){
+      $('.content').css('min-height',$(window).height())
+
+		})
+
+
+
+      </script>
+	  <style>
+	  .avator {
+		width: 200px;
+		height:200px;
+		margin: 0 auto;
+		margin-top:0px;
+
+		background:none;
+		}
+
+		 .avator img{
+		 width: 200px;
+			height:200px;
+		  border-top-right-radius: 5%;
+		  border-top-left-radius: 5%;
+		  border-bottom-right-radius: 5%;
+		  border-bottom-left-radius: 5%;
+		 }
+
+		 .credit{
+         width: 580px;
+         margin: 0 auto;
+         margin-bottom:52px;
+         margin-top:40px;
+         border: 1px solid #aaa;
+         border-radius:10px 10px 10px 10px;
+         background:#fff;
+         color:#444;
+         -webkit-box-shadow: 0 1px 6px rgba(100, 100, 100, 0.475);
+         box-shadow: 0 1px 6px rgba(100, 100, 100, 0.475);
+
+         }
+
+         .credit .title{
+         height:80px;
+         font-size:36px;
+         line-height:80px;
+         padding-left:20px;
+         border-bottom: 1px solid #ddd;
+         color:#444;
+         background:#eee;
+         border-radius:10px 10px 0px 0px;
+         }
+
+		 .credit .credit_content{
+         font-size:30px;
+         line-height:40px;
+         padding:20px;
+         color:#444;
+         }
+
+
+		 .homepage {
+			width: 600px;
+			height:70px;
+			margin: 0 auto;
+			padding-left:20px;
+			padding-top:15px;
+			margin-top:20px;
+			margin-bottom:40px;
+
+			}
+			.homepage a {
+			float: left;
+			color: #1270b3;
+			background-color: #fff;
+			display:block;
+			width:190px;
+			height:70px;
+			line-height:70px;
+			border-width:2px 0 2px 2px;
+			border-style:solid;
+			border-color:#1270b3;
+			text-decoration:none;
+			text-align:center;
+			font-size: 28px;
+			font-weight:bold;
+			}
+
+			.homepage a:active{
+			background:#1270b3;
+			color:#fff;
+			}
+			.homepage a:first-child {
+			-webkit-border-radius:.6em 0 0 .6em;
+			border-radius:.6em 0 0 .6em;
+			}
+			.homepage a:last-child {
+			border-right-width:2px;
+			-webkit-border-radius:0 .6em .6em 0;
+			border-radius:0 .6em .6em 0;
+			}
+			.homepage .current {
+			color: #fff;
+			background-color: #1270b3;
+			border: 2px solid #1270b3;
+			border-right:none;
+			}
+
+
+
+
+        .payway{
+          width: 625px;
+          height:80px;
+          background:#fff;
+          border-bottom:1px solid #cdcdcd;
+          color:#444;
+          font-size:30px;
+          line-height:80px;
+          margin-bottom: 10px;
+          padding-left:15px;
+          padding-top:0px;
+
+         }
+
+         .payway input{
+            height:50px;
+            width:420px;
+            border:0px solid #fff;
+            margin-top:0px;
+            padding-top:0px;
+            font-size: 30px;
+         }
+
+         .payway textarea {
+				height: 150px;
+				width: 420px;
+				border: 0px solid #fff;
+				margin-top: 15px;
+				padding-top: 0px;
+                font-size: 30px;
+			}
+
+
+         .order_confirm{
+         width: 600px;
+         margin:0 auto;
+         margin-top:200px;
+
+         border-radius:10px 10px 10px 10px;
+         background:#06BF03;
+         color:#fff;
+         text-align:center;
+         line-height:80px;
+         font-size:40px;
+         height:80px;
+     text-decoration:none;
+     display:block;
+     padding-top:0px;
+
+         }
+
+
+         .checked{
+            width: 600px;
+         height:40px;
+         margin:0 auto;
+         padding-top:20px;
+
+
+         color:#777;
+         text-align:center;
+         font-size:26px;
+         line-height: 32px;
+
+        text-decoration:none;
+        display:block;
+
+         }
+
+
+        .addavator{
+         width: 600px;
+         height:32px;
+         margin:0 auto;
+         padding-top:20px;
+         margin-bottom:40px;
+
+         color:#777;
+         text-align:center;
+         font-size:26px;
+         line-height: 32px;
+
+        text-decoration:none;
+        display:block;
+
+         }
+
+
+
+
+
+	  </style>
+   </head>
+   <body>
+      <div id='contantzepto' class='content'>
+
+
+
+
+
+     <div class='checked' ><img  src='/img/icon/check-mark-11-32.png'><span style='height:32px;line-height:32px'>&nbsp;支付成功</span></div>
+     <div class='addavator'>请留下联系方式，方便我们送货到您手中</div>
+     <form id="buyerForm" method="post" action=".">
+
+		    <div class='payway'>
+          姓名：
+         <input type="text" name="name" id="name" value="{{ user.name|default_if_none:'' }}"/>
+         </div>
+
+         <div class='payway'>
+         手机：
+         <input type="text" name="tel" id="tel" value="{{ user.tel|default_if_none:'' }}"/>
+         </div>
+
+         <div class='payway' style="height: 180px;">
+				<div style="margin-top: 50px;float: left">收货地址：</div>
+				<textarea name="add" id="add">{{ user.add|default_if_none:'' }}</textarea>
+			</div>
+         </form>
+         <div class='footer' onclick="form_submit();">完成</div>
+      </div>
+   <script language="JavaScript">
+       function form_submit(){
+           var isMobile=/^(1\d{2})\d{5}(\d{3}|\*{3})$/;
+           var isPhone=/^((0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/;
+           if ((null == document.getElementById("name").value)||(document.getElementById("name").value.length == 0)){
+               alert('姓名不能为空');
+               return false;
+           }
+           if(!isMobile.test(document.getElementById("tel").value) && !isPhone.test(document.getElementById("tel").value)){
+                alert("电话号码格式错误，正确:18666666666或010-88888888");
+                return false;
+            }
+           if ((null == document.getElementById("add").value)||(document.getElementById("add").value.length == 0)){
+               alert("地址不能为空");
+               return false;
+           }
+           document.getElementById('buyerForm').submit();
+       }
+   </script>
+   </body>
+
+</html>

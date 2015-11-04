@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html>
+   <head>
+      <meta charset='UTF-8'>
+      <title>玩法介绍</title>
+      <link rel='stylesheet' href='/css/tongyou.css'>
+      <meta id='viewport' content='width=device-width, user-scalable=no, initial-scale=0.5' name='viewport' />
+      <meta name='apple-mobile-web-app-capable' content='yes'>
+      <meta content='black' name='apple-mobile-web-app-status-bar-style' />
+      <script src='/js/zepto.min.js'></script>
+      <script src='/js/util.js'></script>
+      <script>
+		 Zepto(function($){
+      $('.content').css('min-height',$(window).height())
+
+		})
+      </script>
+      <style>
+      .playwayinfo{
+         width: 600px;
+         height:400px;
+         margin:0 auto;
+         padding-top:20px;
+         margin-bottom:40px;
+
+         font-size:28px;
+         color:#777;
+         }
+
+         .playwayinfo img{
+            width:100%;
+            height:100%;
+         }
+
+      </style>
+   </head>
+   <body>
+      <div class='content'>
+
+         <div class='productpic'>
+            <img src='/{{ product.pic }}' style='height:100%;width:100%'>
+            <div class='productpicbottombar'>
+               <span style='float:left;padding-left:100px;' onclick="location.href='/'">排行</span>
+               <span style='float:right;padding-right:100px;color:#f67e06;' onclick="location.href='/detail/'"> 玩法介绍 </span>
+            </div>
+         </div>
+          <div class='playwayinfo' >
+               <span><span style='color:#f60'>1、</span>点击下面“我要参加”链接，成为卖家，并得到专属“分享页”<br>
+               <span style='color:#f60'>2、</span>在右上角分享“分享页”页面<br>
+              <span style='color:#f60'>3、</span>通过您分享页面购买的金额，将成为您的销售额，并累计进入排行榜</span>
+          </div>
+
+         {% if self %}
+        <div class='footer' onclick="location.href='/share/{{ self.id }}/0/'">
+            我的分享
+         </div>
+        {% else %}
+         <div class='footer' onclick="location.href='/join/{{ product.id }}/'">
+            我要参加
+         </div>
+        {% endif %}
+      </div>
+   </body>
+</html>

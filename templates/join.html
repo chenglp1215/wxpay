@@ -1,0 +1,229 @@
+
+<!doctype html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		<title>成为卖家</title>
+		<link rel='stylesheet' href='/css/tongyou.css'>
+{#		<link rel='stylesheet' href='/css/component.css'>#}
+		<meta id='viewport' content='width=device-width, user-scalable=no, initial-scale=0.5' name='viewport' />
+		<script src='/js/zepto.min.js'></script>
+		<script src='/js/util.js'></script>
+		<script>
+			Zepto(function($) {
+				$('.content').css('min-height', $(window).height())
+
+			})
+		</script>
+		<style>
+			.avator {
+				width: 200px;
+				height: 200px;
+				margin: 0 auto;
+				margin-top: 0px;
+				background: none;
+			}
+			.avator img {
+				width: 200px;
+				height: 200px;
+				border-top-right-radius: 5%;
+				border-top-left-radius: 5%;
+				border-bottom-right-radius: 5%;
+				border-bottom-left-radius: 5%;
+			}
+			.credit {
+				width: 580px;
+				margin: 0 auto;
+				margin-bottom: 52px;
+				margin-top: 40px;
+				border: 1px solid #aaa;
+				border-radius: 10px 10px 10px 10px;
+				background: #fff;
+				color: #444;
+				-webkit-box-shadow: 0 1px 6px rgba(100, 100, 100, 0.475);
+				box-shadow: 0 1px 6px rgba(100, 100, 100, 0.475);
+			}
+			.credit .title {
+				height: 80px;
+				font-size: 36px;
+				line-height: 80px;
+				padding-left: 20px;
+				border-bottom: 1px solid #ddd;
+				color: #444;
+				background: #eee;
+				border-radius: 10px 10px 0px 0px;
+			}
+			.credit .credit_content {
+				font-size: 30px;
+				line-height: 40px;
+				padding: 20px;
+				color: #444;
+			}
+			.homepage {
+				width: 600px;
+				height: 70px;
+				margin: 0 auto;
+				padding-left: 20px;
+				padding-top: 15px;
+				margin-top: 20px;
+				margin-bottom: 40px;
+			}
+			.homepage a {
+				float: left;
+				color: #1270b3;
+				background-color: #fff;
+				display: block;
+				width: 190px;
+				height: 70px;
+				line-height: 70px;
+				border-width: 2px 0 2px 2px;
+				border-style: solid;
+				border-color: #1270b3;
+				text-decoration: none;
+				text-align: center;
+				font-size: 28px;
+				font-weight: bold;
+			}
+			.homepage a:active {
+				background: #1270b3;
+				color: #fff;
+			}
+			.homepage a:first-child {
+				-webkit-border-radius: .6em 0 0 .6em;
+				border-radius: .6em 0 0 .6em;
+			}
+			.homepage a:last-child {
+				border-right-width: 2px;
+				-webkit-border-radius: 0 .6em .6em 0;
+				border-radius: 0 .6em .6em 0;
+			}
+			.homepage .current {
+				color: #fff;
+				background-color: #1270b3;
+				border: 2px solid #1270b3;
+				border-right: none;
+			}
+			.payway {
+				width: 625px;
+				height: 80px;
+				background: #fff;
+				border-bottom: 1px solid #cdcdcd;
+				color: #444;
+				font-size: 30px;
+				line-height: 80px;
+				margin-bottom: 10px;
+				padding-left: 15px;
+				padding-top: 0px;
+			}
+			.payway input {
+				height: 50px;
+				width: 420px;
+				border: 0px solid #fff;
+				margin-top: 0px;
+				padding-top: 0px;
+                font-size: 30px;;
+			}
+
+            .payway textarea {
+				height: 150px;
+				width: 420px;
+				border: 0px solid #fff;
+				margin-top: 15px;
+				padding-top: 0px;
+                font-size: 30px;
+			}
+			.order_confirm {
+				width: 600px;
+				margin: 0 auto;
+				margin-top: 200px;
+                margin-bottom: 10px;
+				border-radius: 10px 10px 10px 10px;
+				background: #06BF03;
+				color: #fff;
+				text-align: center;
+				line-height: 80px;
+				font-size: 40px;
+				height: 80px;
+				text-decoration: none;
+				display: block;
+				padding-top: 0px;
+			}
+			.addavator {
+				width: 600px;
+				height: 60px;
+				margin: 0 auto;
+				margin-top: 10px;
+				margin-bottom: 40px;
+				color: #777;
+				text-align: center;
+				font-size: 26px;
+				text-decoration: none;
+				display: block;
+			}
+
+		</style>
+	</head>
+	<body>
+		<form id='contantzepto' class='content' method="post" enctype="multipart/form-data" action="/join/{{ product_id }}/">
+			<div class='productbardivcontainer'></div>
+			<div class='avator' id="selectAvatorDIV"><img id="avator"  src='{{ user.avatar|default:'/img/gf.jpg' }}'>
+			</div>
+{#			<a id="selectAvator" class='addavator' href=''>添加头像</a>#}
+{#			<input name="avatar" id="fileField" type="file" style="display:none;"/>#}
+            <p>&nbsp;</p>
+			<div class='payway'>
+				姓名：
+				<input name="nickname" type="text" id="nickname" value="{{ user.get_nickname }}" readonly="readonly"/>
+			</div>
+			<div class='payway'>
+				手机：
+				<input name="tel" type="text" id="tel" value="{{ user.tel|default_if_none:'' }}"/>
+			</div>
+			<div class='payway' style="height: 180px;">
+				<div style="margin-top: 50px;float: left">个人介绍：</div>
+				<textarea name="desc">{{ user.desc|default_if_none:'这家伙很懒，什么都没留下！' }}</textarea>
+			</div>
+            <div class='footer' onclick="form_submit();">
+            提交
+         </div>
+{#			<a class='order_confirm' href="javascript:void(0);" onclick="document.getElementById('contantzepto').submit();">提交</a>#}
+        <script language="JavaScript">
+       function form_submit(){
+           var isMobile=/^(1\d{2})\d{5}(\d{3}|\*{3})$/;
+           var isPhone=/^((0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/;
+           if ((null == document.getElementById("nickname").value)||(document.getElementById("nickname").value.length == 0)){
+               alert('昵称不能为空');
+               return false;
+           }
+           if(!isMobile.test(document.getElementById("tel").value) && !isPhone.test(document.getElementById("tel").value)){
+                alert("电话号码格式错误，正确:18666666666或010-88888888");
+                return false;
+            }
+           document.getElementById('contantzepto').submit();
+       }
+   </script>
+		</form>
+	</body>
+</html>
+{#<script>#}
+{#	var selectAvatorBtn = document.getElementById('selectAvator');#}
+{#    var selectAvatorDIV = document.getElementById('selectAvatorDIV');#}
+{#	var fileField = document.getElementById('fileField');#}
+{#	var avator = document.getElementById('avator');#}
+{##}
+{#	selectAvatorBtn.onclick = function(){#}
+{#		fileField.click();#}
+{#		return false;#}
+{#	};#}
+{#    selectAvatorDIV.onclick = function(){#}
+{#		fileField.click();#}
+{#		return false;#}
+{#	};#}
+{#	fileField.onchange = function(files){#}
+{#		//modern browser support mutil files, use the first in our case.#}
+{#		var file = this.files[0];#}
+{#		if(file){#}
+{#			avator.src = URL.createObjectURL(file);#}
+{#		}#}
+{#	}#}
+{#</script>#}
